@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Booking extends StatelessWidget {
-  const Booking({super.key});
+class Profile extends StatelessWidget {
+  const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text("Booking page"),
+        title: const Text("Profile page"),
         centerTitle: true,
       ),
-      body: const Center(child: Text("Booking screen"))
+      body: const Center(child: Text("Profile screen"))
     );
   }
 }

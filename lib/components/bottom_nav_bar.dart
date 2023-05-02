@@ -1,8 +1,8 @@
-import 'package:airline_app/Screens/homepage/homepage_screen.dart';
+import 'package:airline_app/Screens/bookingScreen/bookingScreen.dart';
 import 'package:flutter/material.dart';
 
-import '../Screens/booking_screen.dart';
-import '../flights_screen.dart';
+import '../Screens/Profile/ProfileScrren.dart';
+import '../Screens/flightsHistScreen/flights_screen.dart';
 
 
 
@@ -15,7 +15,7 @@ class NavigationBottom extends StatefulWidget {
 
 class _NavigationBottomState extends State<NavigationBottom> {
   int _currentIndex = 0;
-  final List<Widget> _interfaces = const [Homepage(),Booking(),Flights()];
+  final List<Widget> _interfaces = const [Booking(),Flights(),Profile()];
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +25,17 @@ class _NavigationBottomState extends State<NavigationBottom> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home"
-          ),
-          BottomNavigationBarItem(
               icon: Icon(Icons.book),
               label: "Booking"
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.flight),
               label: "Flights"
-          )
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile"
+          ),  
         ],
         currentIndex: _currentIndex,
         onTap: (value) {
