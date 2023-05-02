@@ -11,14 +11,13 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            //const LoginScreenTopImage(),
+          children:[
             Padding(
               padding: const EdgeInsets.only(left:12.0,top: 12,right: 12),
               child: Image.asset("assets/images/login.jpg"),
             ),
-            Row(
-              children: const [
+            const Row(
+              children:  [
                 Spacer(),
                 Expanded(
                   flex: 8,

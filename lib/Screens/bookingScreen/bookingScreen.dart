@@ -5,17 +5,17 @@ import 'package:intl/intl.dart';
 
 import '../../components/style.dart';
 import '../flightsHistScreen/flights_screen.dart';
-import '../homepage/homePageScreen.dart';
+import '../Profile/ProfileScrren.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Booking extends StatefulWidget {
   const Booking({super.key});
 
   @override
-  State<Booking> createState() => _HomepageState();
+  State<Booking> createState() => _BookingState();
 }
 
-class _HomepageState extends State<Booking> {
+class _BookingState extends State<Booking> {
   DateTime? _departureTime;
   DateTime? _arrivalTime;
 
@@ -56,32 +56,20 @@ Future<void> _selectDateTime(DateTime? dateTime, bool isDeparture) async {
             padding: const EdgeInsets.all(12),
             child: Text(" What are\nyou looking for? ",style: GoogleFonts.acme(fontSize: 35,color: darkBlue)),
           ), 
-          FittedBox(
-            child: Container(
-              padding: const EdgeInsets.all(3.5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: const Color(0xFFF4F6FD)
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 7),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.horizontal(left: Radius.circular(50)),
-                      color: Colors.white
-                    ),
-                    child: Center(child: Text('Airline Tickets', style: Styles.subtitle1Style.copyWith(fontWeight: FontWeight.w600, color: Styles.textColor),)),
-                  ), 
-                ],
-    
-              ),  
-        )
-        
-        
-      ),
+          const SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:13.0),
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.all(13),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color(0xFFF4F6FD)
+                ),
+                child: Center(child: Text('Airline Tickets', style: Styles.subtitle1Style.copyWith(fontWeight: FontWeight.w600, color: Styles.textColor,fontSize: 17),)),  
+                  ),
+            ),
+          ),
       Padding(
         padding: const EdgeInsets.all(20),
         child: GestureDetector(

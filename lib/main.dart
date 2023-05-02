@@ -1,7 +1,7 @@
 
 
 import 'package:airline_app/Screens/Welcome/Welcome_screen.dart';
-import 'package:airline_app/Screens/homepage/homepage_screen.dart';
+import 'package:airline_app/Screens/bookingScreen/bookingScreen.dart';
 import 'package:airline_app/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const NavigationBottom(),
+      home: WelcomeScreen(),
     );
   }
 }

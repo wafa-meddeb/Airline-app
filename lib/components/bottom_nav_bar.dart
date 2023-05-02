@@ -1,4 +1,5 @@
 import 'package:airline_app/Screens/bookingScreen/bookingScreen.dart';
+import 'package:airline_app/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/Profile/ProfileScrren.dart';
@@ -43,6 +44,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
             _currentIndex = value;
           });
         },
+        selectedItemColor: darkBlue,
       ),
     );
   }

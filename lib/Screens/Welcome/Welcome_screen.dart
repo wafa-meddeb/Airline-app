@@ -10,8 +10,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Background(child: SingleChildScrollView(
+    return Background(child: SingleChildScrollView(
         child: SafeArea(child: Column(
       children:[
         Image.asset(
@@ -30,7 +29,7 @@ class WelcomeScreen extends StatelessWidget {
         ),
       ],
     )),
-      )),
+      ),
         );
   }
 }

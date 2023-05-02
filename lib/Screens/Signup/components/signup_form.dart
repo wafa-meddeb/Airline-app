@@ -1,8 +1,10 @@
+import 'package:airline_app/components/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
 import '../../Login/login_screen.dart';
+import '../../bookingScreen/bookingScreen.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({
@@ -47,7 +49,12 @@ class SignUpForm extends StatelessWidget {
                   horizontal: defaultPadding * 2,
                   vertical: defaultPadding / 2)),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {return NavigationBottom();
+                }, 
+                ), 
+                );
+            },
             child: Text("Sign Up".toUpperCase(),),
           ),
           const SizedBox(height: defaultPadding),
