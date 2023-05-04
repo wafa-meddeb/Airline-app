@@ -24,6 +24,8 @@ class Flights extends StatelessWidget {
                 TicketView(isOrange: true,),
                 TicketView(isOrange: true,),
                 TicketView(isOrange: true,),
+
+                //listView.builder : use it to build a list of tickets with the data fetched from the API(back-end)
             
         ],
       ),

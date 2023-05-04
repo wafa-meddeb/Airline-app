@@ -3,7 +3,7 @@ import 'package:airline_app/models/flight.dart';
 import 'package:http/http.dart' as http;
 
 
-class HttpService {
+class FlightsModelView {
   final String baseUrl = "https://example.com/api/endpoint"; // change this to the actual API endpoint
 
   // method to fetch a list of flights from the API
