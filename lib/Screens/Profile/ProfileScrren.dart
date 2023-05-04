@@ -1,3 +1,4 @@
+import 'package:airline_app/Screens/Login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
@@ -102,7 +103,26 @@ class Profile extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          SizedBox(
+              width: 150,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 25),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return LoginScreen();
+                  },
+                ),
+              );
+                  },
+                  child: const Text("Log out"),
+                ),
+              ),
+            ),
          
         ],
       ),

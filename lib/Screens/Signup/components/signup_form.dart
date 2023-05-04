@@ -17,6 +17,30 @@ class SignUpForm extends StatelessWidget {
       child: Column(
         children: [
           Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              cursorColor: kPrimaryColor,
+              decoration: InputDecoration(
+                hintText: "First name",
+                prefixIcon: Icon(Icons.person,color: darkBlue,),
+              ),
+              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding),
+            child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
+                cursorColor: kPrimaryColor,
+                decoration: InputDecoration(
+                  hintText: "Last name",
+                  prefixIcon: Icon(Icons.person,color: darkBlue,),
+                ),
+                ),
+          ),
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             child: TextFormField(
               keyboardType: TextInputType.emailAddress,
@@ -25,7 +49,7 @@ class SignUpForm extends StatelessWidget {
               onSaved: (email) {},
               decoration: InputDecoration(
                 hintText: "Your email",
-                prefixIcon: Icon(Icons.person,color: darkBlue,),
+                prefixIcon: Icon(Icons.email,color: darkBlue,),
               ),
             ),
           ),
@@ -40,6 +64,42 @@ class SignUpForm extends StatelessWidget {
                 prefixIcon: Icon(Icons.lock,color: darkBlue,),
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric( horizontal: defaultPadding),
+            child: TextFormField(
+                textInputAction: TextInputAction.done,
+                obscureText: true,
+                cursorColor: kPrimaryColor,
+                decoration: InputDecoration(
+                  hintText: "Phone number",
+                  prefixIcon: Icon(Icons.phone,color: darkBlue,),
+                ),
+              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding,vertical: defaultPadding),
+            child: TextFormField(
+                textInputAction: TextInputAction.done,
+                obscureText: true,
+                cursorColor: kPrimaryColor,
+                decoration: InputDecoration(
+                  hintText: "passport number",
+                  prefixIcon: Icon(Icons.fingerprint,color: darkBlue,),
+                ),
+              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: TextFormField(
+                  textInputAction: TextInputAction.done,
+                  obscureText: true,
+                  cursorColor: kPrimaryColor,
+                  decoration: InputDecoration(
+                    hintText: "Nationality",
+                    prefixIcon: Icon(Icons.flag,color: darkBlue,),
+                  ),
+                ),
           ),
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(

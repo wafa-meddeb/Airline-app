@@ -1,5 +1,7 @@
+import 'package:airline_app/Screens/bookingScreen/flights_suggestions.dart';
 import 'package:airline_app/Screens/bookingScreen/ticket.dart';
 import 'package:airline_app/constants.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -140,6 +142,33 @@ Future<void> _selectDateTime(DateTime? dateTime, bool isDeparture) async {
               ),
             ),
           ),
+          //search button 
+          Center(
+  child: Container(
+    child: FittedBox(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 25),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const FlightsSuggestions()),
+            );
+          },
+          child: const Text("search"),
+          style: ElevatedButton.styleFrom(
+            primary: Styles.primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+
+            
         Padding(
           padding: const EdgeInsets.all(12),
           child: Container(
