@@ -124,7 +124,7 @@ class SignUpForm extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) {
+                  builder: (context) { //builder: builds the primary contents of the route
                     return LoginScreen();
                   },
                 ),

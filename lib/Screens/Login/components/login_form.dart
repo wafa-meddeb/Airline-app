@@ -6,10 +6,10 @@ import '../../../components/bottom_nav_bar.dart';
 import '../../../constants.dart';
 import '../../Signup/signup_screen.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({
-    Key? key,
-  }) : super(key: key);
+class LoginForm extends StatelessWidget { // a class that extends a stateless widget: it doesn't have any mutable state 
+  const LoginForm({ 
+    Key? key,  //key is used to uniquely identify widgets in the widget tree: (usefuf for handling updates and performing operations)
+  }) : super(key: key); //calls the constructor of the superclass(=StatelessWidget)
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class LoginForm extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.emailAddress, //type of keyboard to show the @ sign
             textInputAction: TextInputAction.next,
             cursorColor: darkBlue,
             onSaved: (email) {},

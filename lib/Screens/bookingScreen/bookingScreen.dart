@@ -133,7 +133,7 @@ Future<void> _selectDateTime(DateTime? dateTime, bool isDeparture) async { //asy
               Expanded(
                 child: Text(
                   _arrivalTime != null
-                      ? DateFormat('dd MMMM yyyy, HH:mm').format(_arrivalTime!)
+                      ? DateFormat('dd MMMM yyyy, HH:mm').format(_arrivalTime!) 
                       : ' Arrival',
                   style: Styles.textStyle,
                 ),

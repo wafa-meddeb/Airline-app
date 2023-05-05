@@ -23,8 +23,20 @@ class Flight {
     this.isDirect,
     this.status,
   });
+
+  // Getters 
+  int? get flightNumber => flightNum;
+  String? get flightName => name;
+  DateTime? get flightDepartureDateTime => departureDateTime;
+  DateTime? get flightArrivalDateTime => arrivalDateTime;
+  double? get flightPrice => price;
+  double? get flightDuration => duration;
+  int? get flightDistance => distance;
+  bool? get flightIsDirect => isDirect;
+  FlightStatus? get flightStatus => status;
+
     
-    factory Flight.fromJson(Map<String, dynamic> json) {
+  factory Flight.fromJson(Map<String, dynamic> json) {
     return Flight(
         flightNum: json['flightNum'],
         name: json['name'],

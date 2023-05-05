@@ -7,7 +7,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( // Scaffold is a widget that contains the AppBar and the body of the screen
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
               children:  [
                 Spacer(),
                 Expanded(
-                  flex: 8,
+                  flex: 8, // takes 80% of the screen
                   child: LoginForm(),
                 ),
                 Spacer(),
