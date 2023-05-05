@@ -20,20 +20,20 @@ class Booking extends StatefulWidget {
 class _BookingState extends State<Booking> {
   DateTime? _departureTime;
   DateTime? _arrivalTime;
-
-Future<void> _selectDateTime(DateTime? dateTime, bool isDeparture) async {
+//future: a future is a function that will run in the background and will return a value in the future
+Future<void> _selectDateTime(DateTime? dateTime, bool isDeparture) async { //async means that this function will run in the background
     final picked = await showDatePicker(
       context: context,
-      initialDate: dateTime ?? DateTime.now(),
+      initialDate: dateTime ?? DateTime.now(), //"??" means if dateTime is null use DateTime.now()
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (picked != null) {
-      final pickedTime = await showTimePicker(
+      final pickedTime = await showTimePicker( //await means wait for the user to pick a time
         context: context,
         initialTime: TimeOfDay.fromDateTime(dateTime ?? DateTime.now()),
       );
-      setState(() {
+      setState(() { //setState rebuilds the widget with the new values
         if (isDeparture) {
           _departureTime = DateTime(picked.year, picked.month, picked.day,
             pickedTime!.hour, pickedTime.minute);
@@ -75,7 +75,8 @@ Future<void> _selectDateTime(DateTime? dateTime, bool isDeparture) async {
       Padding(
         padding: const EdgeInsets.all(20),
         child: GestureDetector(
-              onTap: () => _selectDateTime(_departureTime, true),
+              //=>: means that the function will run when the user taps on the container
+              onTap: () => _selectDateTime(_departureTime, true), //true means that the user is picking a departure time
           child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                 decoration: BoxDecoration(
@@ -128,7 +129,7 @@ Future<void> _selectDateTime(DateTime? dateTime, bool isDeparture) async {
                 ),
                 child: Row(
                   children: [
-              const Icon(Icons.flight_takeoff_rounded, color: Color(0xFFBFC2D5)),
+              const Icon(Icons.flight_land_rounded, color: Color(0xFFBFC2D5)),
               Expanded(
                 child: Text(
                   _arrivalTime != null

@@ -1,19 +1,19 @@
 class Passenger{
-  //int? id;
+  int? id;
   String? name;
   String? familyName;
   String? email;
   String? phoneNumber;
-  String? Nationality;
+  String? nationality;
   String? passportNumber;
 
   Passenger({
-    //this.id,
+    this.id,
     this.name,
     this.familyName,
     this.email,
     this.phoneNumber,
-    this.Nationality,
+    this.nationality,
     this.passportNumber,
   });
 
@@ -23,7 +23,7 @@ class Passenger{
         familyName: json['familyName'],
         email: json['email'],
         phoneNumber: json['phoneNumber'],
-        Nationality: json['nationality'],
+        nationality: json['nationality'],
         passportNumber: json['passportNumber']);
   }
 }
