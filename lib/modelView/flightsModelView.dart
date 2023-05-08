@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 
 class FlightsModelView {
-  final String baseUrl = "https://example.com/api/endpoint"; // change this to the actual API endpoint
+  final String baseUrl = "http://localhost:8080/flight/getFlight"; // the API endpoint
 
   // method to fetch a list of flights from the API
   Future<List<Flight>> getFlights() async {
@@ -19,16 +19,5 @@ class FlightsModelView {
     }
   }
 
-  // method to update a flight using the API
-  // Future<void> updateFlight(String flightId, Flight updatedFlight) async {
-  //   final response = await http.put(
-  //     Uri.parse('$baseUrl/flights/$flightId'),
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: jsonEncode(updatedFlight.toJson()),
-  //   );
-
-  //   if (response.statusCode != 200) {
-  //     throw Exception('Failed to update flight');
-  //   }
-  // }
+  
 }

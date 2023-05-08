@@ -1,20 +1,22 @@
 import 'dart:convert';
+import 'dart:developer';
 
+import 'package:airline_app/Screens/bookingScreen/bookingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class userAuthModelView {
-  static const String baseUrl = "api.example.com";
+class UserAuthModelView {
+  static const String baseUrl = "http://localhost:8080/passenger/add";
 
   // method to sign up a user using the API and show a dialog box to the user based on the response from the API 
   static Future<void> signUp(  
+      //int? id,
       String name,
       String familyName,
       String email,
       String phoneNumber,
       String nationality,
       String passportNumber,
-      String password,
       BuildContext context) async {
     Map<String, dynamic> userData = {  // create a map of the user data
       "name": name,
@@ -23,7 +25,7 @@ class userAuthModelView {
       "phoneNumber": phoneNumber,
       "nationality": nationality,
       "passportNumber": passportNumber,
-      "password": password,
+      
     };
 
     Map<String, String> headers = {  // create a map of the headers : content-type
@@ -31,11 +33,14 @@ class userAuthModelView {
     };
 
     http
-        .post(Uri.http(baseUrl, "/passengers"), 
+        .post(Uri.parse(baseUrl), 
             body: json.encode(userData), headers: headers)  // encode the data to json and send it to the API
         .then((http.Response response) async {
-      if (response.statusCode == 201) {   // 201 is the status code for created
-        Navigator.pushNamed(context, "/login");
+          print("response body:" + "$response.body");
+      if (response.statusCode == 200) {   // 200 is the status code for OK
+        Navigator.push(context,MaterialPageRoute(builder: (context) { //builder: builds the primary contents of the route
+                    return Booking();
+                  },)); //
         showDialog(
             context: context,
             builder: (context) {
