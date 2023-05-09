@@ -1,5 +1,6 @@
 import 'package:airline_app/components/bottom_nav_bar.dart';
 import 'package:airline_app/modelView/userAuthModelView.dart';
+import 'package:airline_app/models/passenger.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
@@ -16,24 +17,68 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  String? _name;
-  String? _familyName;
-  String? _email;
-  String? _phoneNumber;
-  String? _nationality;
-  String? _passportNumber;
+  final _nameController = TextEditingController();
+  final _familyNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _nationalityController = TextEditingController();
+  final _passportNumberController = TextEditingController();
+  bool _isLoading = false;
+  final userViewModel = UserAuthModelView();
+    late PassengerModel _passenger;
 
-   final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
+  final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
 
-     @override
+
+    @override
   void initState() {
     super.initState();
+    _passenger = PassengerModel();
+  }
+
+  void _handleSignUp() async {
+    if (_keyForm.currentState!.validate()) {
+      _keyForm.currentState!.save();
+
+      setState(() {
+        _isLoading = true;
+      });
+
+      try {
+        final passengerModel = await userViewModel.signUp(_passenger);
+
+        setState(() {
+          _isLoading = false;
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Sign-up successful.'),
+            backgroundColor: Colors.green,
+          ),
+        );
+
+        Navigator.of(context).pop();
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Sign-up failed: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final name= TextFormField(
-    onSaved: (String? value) {_name = value;},
+      controller: _nameController,
+    //onSaved: (String? value) {_name = value;},
 
 
               textInputAction: TextInputAction.next,
@@ -52,8 +97,8 @@ class _SignUpFormState extends State<SignUpForm> {
   );
 
   final familyName= TextFormField(
-
-    onSaved: (String? value) {_familyName = value;},
+controller: _familyNameController,
+    //onSaved: (String? value) {_familyName = value;},
                 textInputAction: TextInputAction.next,
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
@@ -70,10 +115,10 @@ class _SignUpFormState extends State<SignUpForm> {
 
   final email= TextFormField(
      keyboardType: TextInputType.emailAddress,
-     
+     controller: _emailController,
               textInputAction: TextInputAction.next,
               cursorColor: kPrimaryColor,
-              onSaved: (String? value) {_email=value;},
+              //onSaved: (String? value) {_email=value;},
               decoration: InputDecoration(
                 hintText: "Your email",
                 prefixIcon: Icon(Icons.email,color: darkBlue,),
@@ -89,7 +134,8 @@ validator: (value) {
 
   final phoneNumber= TextFormField(
            keyboardType: TextInputType.phone,
-    onSaved: (String? value) {_phoneNumber = value;} ,
+           controller: _phoneNumberController,
+   // onSaved: (String? value) {_phoneNumber = value;} ,
                 textInputAction: TextInputAction.next,
                  cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
@@ -105,9 +151,10 @@ validator: (value) {
   );
 
   final nationality= TextFormField(
-           
-    onSaved: (String? value) {_nationality = value;} ,
+           controller: _nationalityController,
+    //onSaved: (String? value) {_nationality = value;} ,
                 textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.text,
                   obscureText: true,
                   cursorColor: kPrimaryColor,
                   decoration: InputDecoration(
@@ -122,7 +169,8 @@ validator: (value) {
       },
   );final passportNumber= TextFormField(
            keyboardType: TextInputType.number,
-    onSaved: (String? value) {_passportNumber = value;} ,
+           controller: _passportNumberController,
+    //onSaved: (String? value) {_passportNumber = value;} ,
                 textInputAction: TextInputAction.next,
                  cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
@@ -174,20 +222,51 @@ validator: (value) {
                   horizontal: defaultPadding * 2,
                   vertical: defaultPadding / 2)),
             ),
-            onPressed: () {
-               if (_keyForm.currentState!.validate()) {
-            _keyForm.currentState!.save();
-            
-            UserAuthModelView.signUp(_name!, _familyName!, _email!, _phoneNumber!, _nationality!, _passportNumber!, context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) {return NavigationBottom();
-                }, 
-                ), 
-                );
-            
-            }
-              
-            },
-            child: Text("Sign Up".toUpperCase(),),
+            onPressed: () async {
+              if (_keyForm.currentState!.validate()) {
+                setState(() {
+                  _isLoading = true;
+                });
+                
+                // Create a new PassengerModel object using the form data
+                  final passenger = PassengerModel(
+                    name: _nameController.text,
+                    familyName: _familyNameController.text,
+                    email: _emailController.text,
+                    nationality: _nationalityController.text,
+                    phoneNumber: _phoneNumberController.text,
+                    passportNumber: _passportNumberController.text,
+                  );
+ try {
+                    // Attempt to sign up the user
+                    final passengerModel =
+                        await userViewModel.signUp(passenger);
+
+                    // If the sign-up process was successful, show a success message
+                    // and navigate back to the login view.
+                    setState(() {
+                      _isLoading = false;
+                    });
+                  
+                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationBottom())
+                    );
+                  } catch (e) {
+                    // If an error occurs during sign-up, show an error message
+                    // and reset the loading state.
+                    setState(() {
+                      _isLoading = false;
+                    });
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Sign up failed. ${e.toString()}'),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  }
+                }
+              },
+            child: Text('Sign Up'),
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(

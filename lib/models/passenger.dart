@@ -1,4 +1,4 @@
-class Passenger{
+class PassengerModel {
   int? id;
   String? name;
   String? familyName;
@@ -6,33 +6,39 @@ class Passenger{
   String? phoneNumber;
   String? nationality;
   String? passportNumber;
+ // Null? passengerBookings;
 
-  Passenger({
-    this.id,
-    this.name,
-    this.familyName,
-    this.email,
-    this.phoneNumber,
-    this.nationality,
-    this.passportNumber,
-  });
-  
-  // Setters
-  set passengerId(int? id) => this.id = id;
-  set passengerName(String? name) => this.name = name;
-  set passengerFamilyName(String? familyName) => this.familyName = familyName;
-  set passengerEmail(String? email) => this.email = email;
-  set passengerPhoneNumber(String? phoneNumber) => this.phoneNumber = phoneNumber;
-  set passengerNationality(String? nationality) => this.nationality = nationality;
-  set passengerPassportNumber(String? passportNumber) => this.passportNumber = passportNumber;
+  PassengerModel(
+      {this.id,
+      this.name,
+      this.familyName,
+      this.email,
+      this.phoneNumber,
+      this.nationality,
+      this.passportNumber,
+      });
 
-  factory Passenger.fromJson(Map<String, dynamic> json) {
-    return Passenger(
-        name: json['name'],
-        familyName: json['familyName'],
-        email: json['email'],
-        phoneNumber: json['phoneNumber'],
-        nationality: json['nationality'],
-        passportNumber: json['passportNumber']);
+  PassengerModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    familyName = json['familyName'];
+    email = json['email'];
+    phoneNumber = json['phoneNumber'];
+    nationality = json['nationality'];
+    passportNumber = json['passportNumber'];
+    //passengerBookings = json['passengerBookings'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['familyName'] = this.familyName;
+    data['email'] = this.email;
+    data['phoneNumber'] = this.phoneNumber;
+    data['nationality'] = this.nationality;
+    data['passportNumber'] = this.passportNumber;
+   // data['passengerBookings'] = this.passengerBookings;
+    return data;
   }
 }
