@@ -1,7 +1,8 @@
 import 'package:airline_app/components/bottom_nav_bar.dart';
-import 'package:airline_app/modelView/userAuthModelView.dart';
+import 'package:airline_app/modelView/userModelView.dart';
 import 'package:airline_app/models/passenger.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
@@ -155,7 +156,7 @@ validator: (value) {
     //onSaved: (String? value) {_nationality = value;} ,
                 textInputAction: TextInputAction.done,
                 keyboardType: TextInputType.text,
-                  obscureText: true,
+          
                   cursorColor: kPrimaryColor,
                   decoration: InputDecoration(
                     hintText: "Nationality",
@@ -185,7 +186,7 @@ validator: (value) {
       },
   );
 
-    return Form(
+    return Form( 
       key: _keyForm,
       child: Column(
         children: [
@@ -223,6 +224,8 @@ validator: (value) {
                   vertical: defaultPadding / 2)),
             ),
             onPressed: () async {
+                  
+
               if (_keyForm.currentState!.validate()) {
                 setState(() {
                   _isLoading = true;
@@ -237,18 +240,22 @@ validator: (value) {
                     phoneNumber: _phoneNumberController.text,
                     passportNumber: _passportNumberController.text,
                   );
- try {
+                try {
                     // Attempt to sign up the user
                     final passengerModel =
                         await userViewModel.signUp(passenger);
 
-                    // If the sign-up process was successful, show a success message
-                    // and navigate back to the login view.
+                        // Save data to SharedPreferences
+                      await userViewModel.saveDataToSharedPreferences(passenger);
+
+                    // If the sign-up process was successful, navigate back to the main view. 
+                      
                     setState(() {
                       _isLoading = false;
                     });
                   
-                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationBottom())
+                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationBottom()),
+                     
                     );
                   } catch (e) {
                     // If an error occurs during sign-up, show an error message

@@ -6,9 +6,12 @@ import '../../components/layouts.dart';
 import '../../components/style.dart';
 
 class TicketView extends StatelessWidget{
-  final bool? isOrange;
+  final bool? isOrange;  
 
-  const TicketView({Key? key, this.isOrange}) : super(key: key);
+  //key: This is an optional parameter of type Key that is used to uniquely 
+  //identify the widget. The Key class is often used in Flutter to identify 
+  //a widget when it is being updated or removed from the widget tree.
+  const TicketView({Key? key, this.isOrange}) : super(key: key); 
   @override
   Widget build(BuildContext context) {
     final size = Layouts.getSize(context);
